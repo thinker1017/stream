@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="stream"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/stream.log</file>
+		<encoder>
+			<pattern>%d [%t] %-5p %C{0}:%L - %m%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/stream.log.%d{yyyy-MM-dd}</fileNamePattern>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<target>System.out</target>
+		<encoder>
+			<pattern>%d [%t] %-5p %C:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="ch.qos.logback">
+		<level value="warn" />
+	</logger>
+
+	<logger name="org.apache">
+		<level value="warn" />
+	</logger>
+	<logger name="storm.kafka">
+		<level value="info" />
+	</logger>
+
+	<logger name="backtype.storm">
+		<level value="warn" />
+	</logger>
+
+	<root level="debug">
+		<appender-ref ref="console" />
+		<appender-ref ref="stream" />
+	</root>
+</configuration>
